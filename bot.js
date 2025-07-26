@@ -83,8 +83,68 @@ function getNextTurnMessage(session) {
   };
 }
 
-client.once("ready", () => {
+client.once("ready", async () => {
   console.log(`Logged in as ${client.user.tag}`);
+
+  // Register slash commands
+  const commands = [
+    {
+      name: "startmap",
+      description: "Start a map selection session",
+      options: [
+        {
+          name: "user1",
+          description: "First user",
+          type: 6, // USER type
+          required: true,
+        },
+        {
+          name: "user2",
+          description: "Second user",
+          type: 6, // USER type
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "banmap",
+      description: "Ban a map",
+      options: [
+        {
+          name: "map",
+          description: "Map to ban",
+          type: 3, // STRING type
+          required: true,
+          choices: MAPS.map((map) => ({ name: map, value: map })),
+        },
+      ],
+    },
+    {
+      name: "pickmap",
+      description: "Pick a map",
+      options: [
+        {
+          name: "map",
+          description: "Map to pick",
+          type: 3, // STRING type
+          required: true,
+          choices: MAPS.map((map) => ({ name: map, value: map })),
+        },
+      ],
+    },
+    {
+      name: "sessioninfo",
+      description: "Get current session information",
+    },
+  ];
+
+  try {
+    console.log("Registering slash commands...");
+    await client.application.commands.set(commands);
+    console.log("Successfully registered slash commands.");
+  } catch (error) {
+    console.error("Error registering slash commands:", error);
+  }
 });
 
 client.on("interactionCreate", async (interaction) => {
