@@ -12,5 +12,6 @@
     "discord.js": "^14.21.0",
     "dotenv": "^17.2.1",
     "puppeteer": "^24.15.0"
-  }
+  },
+  "type": "module"
 }
