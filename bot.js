@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 const puppeteer = require('puppeteer');
 
@@ -6,7 +7,7 @@ const MAPS = [
 ];
 
 // CHANGE THIS to your map page URL!
-const PAGE_URL = "https://yourwebpage.example.com/maps";
+const PAGE_URL = "https://flowstatecs.com/themaps";
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -123,5 +124,7 @@ client.on('messageCreate', async message => {
         return;
     }
 });
+
+
 
 client.login(process.env.DISCORD_TOKEN);
