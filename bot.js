@@ -7,7 +7,7 @@ const MAPS = [
 ];
 
 // CHANGE THIS to your map page URL!
-const PAGE_URL = "https://flowstatecs.com/themaps";
+const PAGE_URL = "https://showdown.flowstatecs.com/maps";
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
