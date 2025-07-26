@@ -214,10 +214,21 @@ client.on("interactionCreate", async (interaction) => {
         phase: nextTurn.phase,
       });
 
-      await interaction.editReply(nextTurn.message);
+      await interaction.editReply(
+        `**${interaction.user.username}** banned **${mapName}**\n\n${nextTurn.message}`
+      );
 
       if (session.turn >= TURN_SEQUENCE.length) {
-        await interaction.followUp("Map selection complete!");
+        const tiebreaker = MAPS.find(
+          (m) => !session.actions.map((a) => a.map).includes(m)
+        );
+        if (tiebreaker) {
+          await interaction.followUp(
+            `**Tie Breaker auto-picked: ${tiebreaker}**\n\nMap selection complete!`
+          );
+        } else {
+          await interaction.followUp("Map selection complete!");
+        }
         session = null;
       }
       return;
@@ -291,7 +302,9 @@ client.on("interactionCreate", async (interaction) => {
         phase: nextTurn.phase,
       });
 
-      await interaction.editReply(nextTurn.message);
+      await interaction.editReply(
+        `**${interaction.user.username}** picked **${mapName}**\n\n${nextTurn.message}`
+      );
 
       if (session.turn >= TURN_SEQUENCE.length) {
         await interaction.followUp("Map selection complete!");
