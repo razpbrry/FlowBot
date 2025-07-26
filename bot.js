@@ -6,22 +6,13 @@ import { updateSessionState, sendMapAction } from "./websocket-server.js";
 dotenv.config();
 
 const MAPS = [
-  "surf_nyx",
-  "surf_tuxedo",
-  "surf_utopia_njv",
-  "surf_slob",
-  "surf_reytx",
   "surf_grassland",
-  "surf_facility",
-  "surf_kloakk",
+  "surf_utopia_njv",
   "surf_cannonball",
-  "surf_placid",
+  "surf_facility",
+  "surf_nyx",
   "surf_andromeda",
-  "surf_physics",
-  "surf_inferno",
-  "surf_cyberwave",
-  "surf_olympics",
-  "surf_quilavar",
+  "surf_kloakk",
 ];
 
 const client = new Client({
